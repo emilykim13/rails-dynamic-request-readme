@@ -66,19 +66,19 @@ describe 'navigate' do
 end
 ```
 
-Running `rspec` gives us an expected error of: `ActionController::RoutingError: No route matches [GET] "/posts/1"`. To correct this error, let's draw a route in
+<!-- Running `rspec` gives us an expected error of: `ActionController::RoutingError: No route matches [GET] "/posts/1"`. To correct this error, let's draw a route in
 _config/routes.rb_ that maps to a show action in the PostsController:
 
 ```ruby
 get 'posts/:id', to: 'posts#show'
-```
+``` -->
 
-Here you will notice something that's different from the static route. The
+<!-- Here you will notice something that's different from the static route. The
 `/:id` tells the routing system that this route can receive a parameter and that
 the parameter will be passed to the controller's show action. With this route in
-place, let's run our tests again.
+place, let's run our tests again. -->
 
-You should see a new failure this time: `ActionController::RoutingError: uninitialized constant PostsController`. Once we stub out a `PostsController`
+<!-- You should see a new failure this time: `ActionController::RoutingError: uninitialized constant PostsController`. Once we stub out a `PostsController`
 class in `app/controllers/posts_controller.rb`, running the tests again will
 give us yet another new failure: `AbstractController::ActionNotFound: The action 'show' could not be found for PostsController`. This means that we need to
 create a corresponding `show` action in the PostsController. Let's get this
@@ -90,7 +90,7 @@ failure fixed with the code below:
 class PostsController < ApplicationController
   def show
   end
-end
+end -->
 ```
 
 Run the tests again. Now we see a failure saying that we are missing the
@@ -159,10 +159,10 @@ the show view template:
 We're back to green! Now let's implement the description spec:
 
 ```ruby
-it 'shows the description on the show page in a p tag' do
-  visit "/posts/#{@post.id}"
-  expect(page).to have_css("p", text: "My post desc")
-end
+# it 'shows the description on the show page in a p tag' do
+#   visit "/posts/#{@post.id}"
+#   expect(page).to have_css("p", text: "My post desc")
+# end
 ```
 
 This will give us a failure since there are no matches on the template yet. To
